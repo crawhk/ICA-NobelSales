@@ -15,25 +15,32 @@ library(tidyverse)
 Let's first load the data:
 
 ```{r label-me1, eval=FALSE}
-nobel <- ___(___)
+nobel <- read.csv("data-raw/nobel.csv")
 ```
 
 Then let's split the data into two:
 
 ```{r label-me2, eval=FALSE}
 # stem laureates
-___ <- nobel %>%
-  filter(___)
+stem <- nobel %>%
+  filter ((category %in% c("Physics", "Medicine", "Chemistry", "Economics"))
+)
 
 # non-steam laureates
-___ <- nobel %>%
-  filter(___)
+nonstem <- nobel %>%
+  filter(!(category %in% c("Physics", "Medicine", "Chemistry", "Economics")))
 ```
 
 And finally write out the data:
 
 ```{r label-me3}
-# add code for writing out the two data frames here
+#dfstem <- tribble(category)
+write.csv(stem, file = "data-raw/stem.csv")
+```
+
+```{r}
+#dfstem <- tribble(category)
+write.csv(nonstem, file = "data-raw/nonstem.csv")
 ```
 
 ## References {#references}
